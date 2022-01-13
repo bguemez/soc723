@@ -1,0 +1,338 @@
+---
+title: "Homework 1"
+author: "Braulio Güémez"
+date: "5/1/2022"
+output: html_document
+---
+
+# Problem set Ch. 3.
+
+### 1. What is variable?
+
+A variable is the collection of observations we have based on one observation. Is called a variable because the information vary across observations.
+
+### 2.	For each of the following variables, what types of variables are they (continuous, count, ordinal, categorical, qualitative)?
+
+a.	Age (in YEARS)
+- Count
+b.	Gender
+- Categorical
+c.	The number of times that the President has tweeted in the past day
+- Count
+d.	Income
+- Continous
+e.	Number of Instagram posts about statistics in the past month
+- Count
+f.	The number of unemployment claims filed in US last week
+- Count
+g.	The university or college that a student attends
+- Categorical 
+h.	A therapist’s written assessment of a patient’s symptoms of depression
+- Qualitative
+i.	Whether a soccer team is in its league’s A division (highest), B division (next highest), or C division (lowest)
+- Ordinal
+
+### 3.Which of the following provides a description of the probability that each possible value of a variable will occur?
+
+A distribution
+
+### 4. Below is a frequency table depicting the salaries of Economics professors employed at a university. The column named Salary contains the salary, and the column named Frequency contains the number of professors who earn the stated salary.
+
+```{r, warning=FALSE, results='hide'}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+
+```
+
+```{r}
+ec_sal <- tibble(Salary=c(85000,90000,100000,120000,125000,130000), Frequency=c(5,4,1,2,3,2)) 
+
+## Just to check
+ec_sal_2 <- tibble(salary=c(rep(85000,5),rep(90000,4),100000,rep(120000,2), rep(125000,3), rep(130000,2)))
+```
+
+a) Following the book definition: 
+
+```{r}
+ec_sal <- ec_sal |> mutate(per=Frequency/sum(Frequency), mean=sum(per*Salary))
+
+sample(ec_sal$mean, 1)
+
+## Double check 
+mean(ec_sal_2$salary)
+
+```
+
+b) Since the median is the observation in the 50th percentile, we can estimate it by selecting the Salary observation that splits in the distrbution in half. In this case, that is observation number 9 (out of 17). The median is 90,000
+
+```{r}
+quantile(ec_sal_2$salary,.5)
+```
+
+
+c) This one's easy because the table is ordered. Minimum is 85k and maximum 130k
+
+```{r}
+min(ec_sal_2$salary)
+max(ec_sal_2$salary)
+```
+
+d) The IQR of Salary equals the observation in the 75th percentile minus the 25th percentile. The 25th percentile is ~ .25x17 the 4th observation (85k) and the 75th is the ~.75x17 13th observation (125k). The IQR would be of 40k. This means that 50% of the Econ professors nearest to the median have a range of income of $40,000
+
+
+```{r}
+quantile(ec_sal_2$salary,c(.75,.5))
+IQR(ec_sal_2$salary)
+
+```
+
+
+### 5.	Which of the following commonly represents the truth we are trying to estimate in statistics?
+
+	Greek letters like μ and β
+
+### 6.	Which of the following reduces impact of extreme values if the distribution of a variable is skewed? 
+
+Log transforming the variable 
+
+### 7. Order the following distributions from the one with lowest to the one with highest variability
+
+(Not the exact distributions but fairly similar)
+
+```{r}
+ 
+sev <- tibble(d=rnorm(10000,10,1), a=rnorm(10000,10,3), c=rnorm(10000,10,5), b=rnorm(10000,10,9))
+
+d <- sev |> ggplot(aes(d)) + geom_density() + xlim(c(0,20)) + ylim(c(0,.4)) + theme_clean()
+a <- sev |> ggplot(aes(a)) + geom_density() + xlim(c(0,20)) + ylim(c(0,.4))  + theme_clean()
+c <- sev |> ggplot(aes(c)) + geom_density() + xlim(c(0,20))  + ylim(c(0,.4))  + theme_clean()
+b <- sev |> ggplot(aes(b)) + geom_density() + xlim(c(0,20))  + ylim(c(0,.4))  + theme_clean()
+
+ggpubr::ggarrange(d,a,c,b, ncol=2, nrow=2)
+
+```
+
+
+### 8. The following graph represents the final exam scores for 1000 students who took an Introduction to Statistics course at a university.
+
+a. This distribution has its mean around 80 and is skewed to the right.
+
+b. Yes, skewness is to the right.
+
+c. Since the distribution has a skew to the right, that would pull the mean to the same direction. Thus, maybe the median is a better measure to describe the center of the distribution.
+
+d. Due to the skewness, standard deviations may be tricky because the distribution is not symmetrical. I'd use percentiles to describe the variability of the distribution.
+
+### 9. Which of the following statement is correct regarding a left-skewed distribution?
+
+b. The mean is less than the median
+
+### 10. 
+
+```{r}
+standing <- tibble(level=c("Freshman", "Sophomore", "Junior", "Senior"), Frequency=c(1000,1200,900,1500), order=c(1:4)) 
+
+```
+
+a. Categorical
+b. Count
+c. A column bar
+
+```{r}
+standing |> ggplot(aes(reorder(level,order), Frequency)) + geom_col() + theme_clean() + xlab("")
+```
+
+### 11.	Collect any continuous data from your classmates, family members, and/or friends. For example, you can collect data about their age or height. 
+
+
+```{r}
+age_soc <- tibble(age=c(22,24,26,26,24,29,27,30))
+```
+
+
+a.	What is the distribution of the data? Describe the shape of the distribution. Summarize the data using measures like mean, median, range, standard deviation. 
+
+```{r}
+age_soc |> ggplot(aes(age)) + geom_density() 
+mean(age_soc$age)
+median(age_soc$age)
+max(age_soc$age) - min(age_soc$age)
+sd(age_soc$age)
+
+```
+The distribution is centered on the mean and median which are both 26. There is some variability, with an SD of 2 years and a total range of 8 years,
+
+
+b.	What theoretical distribution may have generated the data that you sampled?
+
+This distribution seems to have been generated by a normal distribution.
+
+c.	Does your data give you a good idea about what the underlying theoretical distribution might be? Explain your reasoning.
+
+Yes. The distribution is centered on the mean and the spread is symmetrical. These are indicators that the distribution is probably normal. 
+
+# Problem set Ch. 4.
+
+### 1. What is a conditional distribution?
+
+A conditional distribution is how a distribution of any variable would look like if we only took the cases that satisfy certain rule. For example, what is the distribution of ages in the classroom IF we only took woman.
+
+### 2. The following figure (using fictional data) describes the relationship between Income level and rating on a scale testing for signs of Depression.
+
+a.	How does the conditional mean of Depression change as Income increases?
+
+It seems that the mean of Depression decreases as Income increases,
+
+b.	Does the graph indicate that lower income causes depression? Why or why not?
+
+It just a bivariate association, so potential confounders are not controlled for. It might be the case that living in a rural county (associated to less income) is what is truly driving the Depression index up.
+
+### 3. The below fictional table depicts data collected from 3000 university students on their classification  (Freshman, Sophomore, Junior, Senior) and whether or not they receive financial aid. The table shows a cross tabulation of classification and receipt of financial aid.
+
+```{r}
+
+
+aid_db <- tibble(aid=c(rep(1,1570),rep(0,1430)), status=c(rep("fresh",508 ), rep("soph",349), rep("jr", 425), rep("sr", 288), rep("fresh",371), rep("soph",337), rep("jr",384), rep("sr",338)))    
+
+## For graphical purposes
+aid_tib <- tibble(aid=c(1,0), fresh=c(508,371), soph=c(349,337), jr=c(425,384), sr=c(288,338)) 
+
+aid_tib
+```
+
+
+a.	Calculate the probability of receiving financial aid given that a student is a Senior.
+
+Probability is proportion, so:
+```{r}
+aid_db |> filter(status=="sr") |> summarize(x=mean(aid))
+
+# which equals
+
+288/(288+338)
+
+```
+
+
+b.	Calculate the probability that a student is a Senior given that they receive financial aid.
+
+```{r}
+aid_db |> filter(aid==1) |> group_by(status) |>  summarize(en=n()) |> mutate(pr=en/sum(en)) |> select(status,pr) |> filter(status=="sr")
+
+# which equals
+
+288/(508+349+425+288)
+
+```
+
+c.	Calculate the probability of receiving financial aid given that a student is a Freshman.
+
+```{r}
+aid_db |> filter(status=="fresh") |> summarize(x=mean(aid))
+
+# which equals
+
+508/(508+371)
+
+```
+
+
+
+### 4.	Describe two advantages and one disadvantage of using line-fitting methods as opposed to calculating local means.
+
+Advantages:
+- 1) It dismisses outlayers
+- 2) The line can give us the condition mean of Y for any value of X, not just of those observed 
+
+Disadvantage:
+- 1) There are a limited number of shapes that can be fit the data and sometimes that data isn't compatible with those shapes.
+
+### 5. 	Consider the line of best fit: Y = 4 - 3.5X.
+	
+	a. What is the conditional predicted mean of Y when X=6?
+	
+```{r}
+y <- 4-(3.5*6) 
+y
+```
+	
+	
+	b. What is the conditional predicted mean of Y when X=-2?
+	
+		
+```{r}
+y <- 4-(3.5*-2) 
+y
+```
+
+
+### 6.	Which of the following terms describes a measurement of how much two variables vary with each other?
+
+Covariance
+
+### 7.	What is the difference between covariance and correlation?
+
+Covariance only inform us about the direction of the relationship between variables (positive or negative), whereas correlation give us the direction and the strength of the relationship.
+
+### 8.	Figure A and Figure B below depict the (fictional-data) relationship between scores on a math exam and an intelligence measure from data collected from a fictional sample of 100 students. 
+a.	What type of shape is fitted in Figure A?
+
+It is a straight line.
+
+b.	What kind of shape is fitted in Figure B?
+
+A curved line.
+
+c.	Which shape is a better fit for the data, and how can you tell?
+
+The curved line follows the pattern between x and y more accurately.
+
+d.	For Figure A, describe the residuals for different ranges of math exam scores. Are the observed data below or above the line/curve? Are the residuals evenly scattered around the line/curve?
+
+	When Math Score is less than -1 most of the observed data is above the line. Then, from -1 to 1 most data is below the line. Finally, from 1 onwards, most observed data is above the line. 
+
+The residuals are _not_ evenly scattered around the line. Residuals are closer to the line when x is between -1 and 2.
+
+
+### 9.	The below table contains fictional data on 5 employees from a company, reporting on how well they get along with their coworkers (GetAlong) and their level of job satisfaction (Satisfaction). The Prediction variable is the predicted satisfaction level, or the conditional mean of satisfaction, for each value of GetAlong derived after fitting a line of best fit using ordinary least squares estimation.
+
+```{r}
+getalong <-  tibble(getalong=c(4.7,4.21,5.42,4.14,3.3), satis=c(5.07,4.05,5.33,4.02,3.59), pred=c(4.72,4.28,5.38,4.22,3.45))
+
+getalong
+
+```
+
+a.	Fill in the “residual” column
+
+```{r}
+getalong |> mutate(residuals=getalong-pred)
+```
+
+
+b.	Describe how ordinary least squares uses residuals when fitting a line.
+ 
+ OLS estimates the line that minimizes the total sum of the squared residuals.
+ 
+ 
+ ### 10.	We’ll be thinking here about the process of controlling for a variable. Consider the example: What is the relationship between first generation status and graduation rate in a population of college students?
+ 
+ 
+a.	Give an example of a variable that might explain why first generation status and graduation rate are correlated other than one causing the other.
+
+Social class background might explain the relationship.
+
+
+b.	Describe in five steps how you would subtract out the part of the first-generation/graduation-rate relationship that is explained by the variable you listed in part a.
+
+1. Get the mean of graduation rate conditional on  socioeconomic class
+2. Subtract out that condition mean to get the residual of Y
+3. Get the proportion of being first-generation conditional on low socioeconomic class
+4. Subtract out that conditional mean to get the residual
+5. Describe the relationship between residuals.
+
+c.	How would you interpret the first-generation/graduation-rate relationship you get after performing the steps in part b?
+
+We would probably observe that much of the observed relationship was explained by the social class background of the college students. A high social class is associated to a high graduation rate, and viceversa. Only little association between the original relationship is still observed.
