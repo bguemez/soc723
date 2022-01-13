@@ -1,0 +1,103 @@
+---
+title: "Ch. 5. Exercises"
+author: "Braulio Güémez"
+date: "13/1/2022"
+output: html_document
+---
+
+# Chapter 5: Indentification
+## Exercises
+
+
+### 1. Think about the last time you sat down in a chair (perhaps right now). When you did that, you probably predicted you would observe that you would end up sitting in the chair, rather than passing through it or the chair breaking. List three assumptions you made about the data generating process when you made that prediction.
+
+1) All the chair legs were in their place
+2) The cushion seat was attached to the chair's base 
+3) The chair could hold my weight
+
+### 2.	Which of the following is the best definition of the term identified as in “this variation has identified the effect we’re interested in”?
+
+d.	In the variation we use, there’s no reason we’d see any relationship at all except for the effect we’re interested in.
+
+
+
+### 3.	Go to your favorite news source and find an article that describes the results of a new empirical study. Describe what you think are some features of the data generating process. What are some ways to explain their result other than the interpretation they had? Did the study (as described in the article) have ways of blocking out the alternate explanation you thought of?
+
+
+I chose this article from The NYT:
+https://www.nytimes.com/2021/03/24/magazine/coffee-heart-machine-learning.html
+
+It features a research article claiming that two to three cups of coffee per day may lower the risk of heart failure.
+
+There may be several aspects of the Data Generating Process. It could be that coffee drinkers are mostly young individuals, who have in general less risk of heart failure. It could also be that people who exercise more also drink that amount of coffee (I am an example of that), or maybe those willing to participate in the study are more likely to have a healthy lifestyle and want to know if their coffee-drinking habits are adequate to that lifestyle. 
+
+Although the article does not detail the blocked causal pathways in the sutdy, it does a good job at pointing out possible confounders of the interpretation and explicitly details the differences between correlation and causation. It claims, for example, that "it could be that people with heart disease tend to avoid coffee, possibly thinking it will be bad for them." 
+
+### 4.	You read about a new study with the headline “eating caviar linked to longer lifespan.” The study’s research question is “does eating caviar make you live longer?” In the study’s data, they find that people who eat caviar have, on average, longer lifespans than people who don’t. 
+
+a.	What are some alternate explanations for this relationship? 
+
+- Most of the people who eat caviar are also wealthy, and wealth gives better access to high-quality healthcare or less involvement in life-threatening jobs
+
+
+b.	What sort of variation would identify the answer to the research question? 
+
+- One would need lifespan data about almost-equal subjects where their only difference is eating caviar or not   
+
+c.	Give one suggestion for how the study authors might isolate variation that would identify the answer to the research question
+
+- One can do an experiment where the treatment of eating caviar is randomly assigned. Then researchers could see if the treatment is associated to a longer lifespan.
+
+
+### 5. For each of the following news headlines, assume that the underlying data actually only shows a correlation between the two variables mentioned. Give an alternate explanation for the correlation other than the causal relationship implied by the headline. 
+
+a.	“As stock market drops, presidential approval ratings decline.”
+
+Maybe because of a pandemic that killed hundreds of thousands people both the stock market and the presidential approval ratings dropped.
+
+b.	“Dates are announced for the downtown summer concert series, driving up sales at downtown restaurants.” 
+
+People usually travel more to downtown during the summer than during other seasons (winter for example), which motivates event-planners to schedule dates for that season and also drives up the sales at downtown restaurants.  
+
+c.	“Unsanitary? Hospital visits linked to 20% increased risk of disease.” 
+
+People are in contact with other ill individuals in the hospitals, which is the reason why there's an increased risk of disease, not because of unsanitary conditions.
+
+d. “Dress for success! Every CEO follows this office-wear rule.”
+
+The office-wear rule became dominant because of a fashion trend that started some famous CEO. That is the reason other CEOs followed it. Dressing like that obviously doesn't convert you in a CEO:¿.
+
+### 6.	Why is a variable that causes both the “treatment” and “outcome” variables especially concerning for identification? You may want to use the phrase “alternate explanation” in your answer.
+
+Because that third variable would show that the association between the treatment and the outcome was spurious. It is not there, after you account for it. If the research design does not block that path (through randomization or statistical controls), then there could be an alternate explanation to the relation between those variables.
+
+
+### 7. Shoe company Crikey claims that people who wear their fancy and expensive professional running-shoe Cool Mistrunner brand run 4 to 5% faster than if they wore an average shoe. 
+
+
+a.	In a few sentences, describe the data-generating process (you will probably leave some things out, that’s okay). 
+
+There are several variables that might be related to the DGP: 
+
+Individuals were probably more motivated when trying the new-brand shoes.
+Individuals were probably less tired when trying the Crikey shoes.
+Individuals were training in different road conditions when testing different shoes.
+
+
+b.	What are possible alternative explanations for this claim, aside from the shoe making the person run faster?
+
+* It is the psychological novelty of trying a new shoe that increases speed.
+
+* the study did not use the same conditions when testing the average versus the new show, and that explains the correlation
+
+* the study FIRST tried the new shows, and then tried the average shoes. Individuals were tired when they tried the second ones, and that explains the difference.
+
+
+c.	In running their study, the researchers accounted for some alternative explanations, including: gender, enthusiasm for running, and whether runners have participated in marathons and/or half marathons. Think of an alternative explanation not on this list. What is the implication of not accounting for this alternative explanation?
+
+They don't account on what conditions (weather, bumpiness of the road) the runners exercise, which undermines the correlation claim. 
+
+### 8. Which of the following terms describe how a variable changes from observation to observation?
+
+
+b. Variation
