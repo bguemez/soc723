@@ -31,22 +31,24 @@ It features a research article claiming that two to three cups of coffee per day
 
 There may be several aspects of the Data Generating Process. It could be that coffee drinkers are mostly young individuals, who have in general less risk of heart failure. It could also be that people who exercise more also drink that amount of coffee (I am an example of that), or maybe those willing to participate in the study are more likely to have a healthy lifestyle and want to know if their coffee-drinking habits are adequate to that lifestyle. 
 
-Although the article does not detail the blocked causal pathways in the sutdy, it does a good job at pointing out possible confounders of the interpretation and explicitly details the differences between correlation and causation. It claims, for example, that "it could be that people with heart disease tend to avoid coffee, possibly thinking it will be bad for them." 
+Although the article does not detail the blocked causal pathways in the study, it does a good job at pointing out possible confounders of the interpretation and explicitly details the differences between correlation and causation. It claims, for example, that "it could be that people with heart disease tend to avoid coffee, possibly thinking it will be bad for them." 
+
+The writer of this article seems to be aware about the causal inference issues in studies that use observational data. 
 
 ### 4.	You read about a new study with the headline “eating caviar linked to longer lifespan.” The study’s research question is “does eating caviar make you live longer?” In the study’s data, they find that people who eat caviar have, on average, longer lifespans than people who don’t. 
 
 a.	What are some alternate explanations for this relationship? 
 
-- Most of the people who eat caviar are also wealthy, and wealth gives better access to high-quality healthcare or less involvement in life-threatening jobs
+- Most of the people who eat caviar are also wealthy, and wealth gives better access to high-quality healthcare or less involvement in life-threatening jobs. That selection bias can explain the relationship between caviar and living longer.
 
 
 b.	What sort of variation would identify the answer to the research question? 
 
-- One would need lifespan data about almost-equal subjects where their only difference is eating caviar or not   
+- One would need lifespan data of subjects similar in many aspects (such as wealth and health) where their only difference is eating caviar or not   
 
 c.	Give one suggestion for how the study authors might isolate variation that would identify the answer to the research question
 
-- One can do an experiment where the treatment of eating caviar is randomly assigned. Then researchers could see if the treatment is associated to a longer lifespan.
+- One can do an experiment where the treatment of eating caviar is randomly assigned to a randomly selected sample of the population. Then researchers could see if the treatment is associated to a longer lifespan.
 
 
 ### 5. For each of the following news headlines, assume that the underlying data actually only shows a correlation between the two variables mentioned. Give an alternate explanation for the correlation other than the causal relationship implied by the headline. 
@@ -69,7 +71,7 @@ The office-wear rule became dominant because of a fashion trend that started som
 
 ### 6.	Why is a variable that causes both the “treatment” and “outcome” variables especially concerning for identification? You may want to use the phrase “alternate explanation” in your answer.
 
-Because that third variable would show that the association between the treatment and the outcome was spurious. It is not there, after you account for it. If the research design does not block that path (through randomization or statistical controls), then there could be an alternate explanation to the relation between those variables.
+Because that third variable would show that the association between the treatment and the outcome was spurious. If the research design does not block that path (through randomization or statistical controls) and identifies the variation where only the treatment could have caused the outcome, then there could be an alternate explanation to the relation between those variables.
 
 
 ### 7. Shoe company Crikey claims that people who wear their fancy and expensive professional running-shoe Cool Mistrunner brand run 4 to 5% faster than if they wore an average shoe. 
