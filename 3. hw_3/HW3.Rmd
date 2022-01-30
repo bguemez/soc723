@@ -1,0 +1,275 @@
+---
+author: "Braulio Güémez"
+date: "13/1/2022"
+output: html_document
+---
+
+# Chapter 6: Causal Diagrams
+## Exercises
+
+
+### 1.	In a conversation with your friend, you mention a study you read that found that being tall causally makes you more likely to earn above $100,000 per year. Your friend says the study must be wrong, since they know several tall people who make much less than that, and several short people who do earn that much. Does your friend’s reasoning make sense or not, and why?
+
+Our friend's reasoning  doesn't make much sense for a couple reasons. 
+
+1. Even though he knows several people, it is very likely that  the study has more observations than that, so it doesn't directly contradict the study's claim which is probabilistic ("likely to earn above") and not deterministic
+
+2.  The friend is not pointing out potential confounders of the alleged causation that might explain his own observations. What does his shorter acquaintances with money have that his taller acquaintances without money doesn't? Making this question would look deeper into the DGP and criticize the causal claims of the study "I" read 
+
+### 2. Consider the below diagram, which reproduces Figure 6.3:
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch6_pic1.png")
+```
+
+In this diagram... 
+a.	Which variables have a direct effect on Money?
+
+CoinFlip and TerryInRoom
+
+b.	Which variables have an indirect effect on Money? 
+
+Terry's Mood
+
+
+### 3.	You are interested in the question “Does reading Harry Potter as a child make you read more as an adult?” and draw the diagram below
+
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch6_pic2.png")
+```
+
+a.	What direct effects should be included when trying to answer your research question of interest?
+
+  1. Parental education on HarryPotterAsKid and ReadingAsAdult
+  2. Respondent's occupation on ReadingAsAdult 
+  3. Respondent's education on ReadingAsAdult 
+
+b.	What indirect effects should be included when trying to answer your research question of interest?
+
+  1. Having friends who read HP may indirectly affect ReadingAsAdult by affecting HarryPotterAsKid
+  2. Watching the movie may indirectly affect ReadingAsAdult by influencing reading HarryPotterAsKid
+
+c.	What is a likely alternative explanation of why we might see a relationship between reading Harry Potter and reading more as an adult?
+
+  1. Parental education may be the reason why people read while being a Kid and also an Adult
+
+### 4. The figure in Question 3 has LikesReading included as an unobserved variable. In a few sentences each, explain: 
+
+a.	Why do we bother to include variables on our diagrams if we can’t observe them? 
+
+It is a reminder of the parts of our data generating process. We know they are key variables that must play a role in explaining our dep variable, but we can't observe them. They can also be helpful in explaining an association we are sure is not causal, but explained by other variable which is omitted.
+
+b.	Why might we think that LikesReading is an unobserved or latent variable?
+
+Because it is a variable that may be behind the observed correlation of HarryPotterAsKid and ReadingAsAdult. If parental education causes LikesReading, for example, then the initial association would be spurious. 
+
+### 5.	Consider the research question “do government fire-safety advertisements reduce forest fires?”. 
+
+a.	Draw a causal diagram with these features: (a) ForestFires is caused by FireSafetyAds and ParkRangers (who can help catch fires early and put them out). (b) Both FireSafetyAds and ParkRangers are caused by GovtBudget (the government has to pay for this stuff!). (c) GovtBudget is caused by TimeSinceLastFire— a recent fire might get more money sent to the parks department. 
+
+
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch6_pic3.png")
+```
+
+b.	Suggest one omitted arrow or variable that should be on the diagram.
+
+Average temperature and humidity are also relevant variables in explaining ForestFires
+
+### 6.	Think of a research question in your field/major
+
+Why do Second Generation Immigrants have better educational outcomes than their ethnic/racial counterparts that are US-born?
+
+a.	Sketch out the possible data generating process. 
+
+- Country of origin parental SES -> ed_attainment
+- Parental expectations -> ed_attainment
+- Ethnic enclaves or cooperation -> ed_attainment 
+
+b.	What is the cause of interest? The outcome? 
+
+- Cause: The status of Second Generation Immigration
+- Outcome: High ed_attainment relative to US-born peers
+
+c.	What other variables are in play? 
+
+- Country of origin parental SES
+- Parental expectations
+- Ethnic enclaves
+- Student expectations
+- Parental legal status
+- Family size/structure 
+
+d.	Draw a causal diagram depicting the relationships between all of the variables? 
+
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch6_pic4.png")
+```
+
+
+e.	Can there be any unobserved or latent variables? Include them in the diagram.
+
+Motivation is an unobserved variable that may also play a role in explaining the association we're looking at. It is unobserved because it is typically hard to measure.
+
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch6_pic5.png")
+```
+
+
+
+### 7.	Consider this research question: Does the inclusion of “free shipping” cause people to buy items from an online store more?
+
+a.	List six variables that should be included in a causal diagram. 
+
+1. Free shipping ad
+2. Number of purchases
+3. Price
+4. Previous number of purchases
+5. Internet traffic
+6. Ads on the product
+
+b.	Is it feasible to collect data on all the variables that you listed in part a? Can the variables be measured easily? 
+
+1. I think if you don't run or know someone who runs the business it would be very hard to get all the variables. If we took Amazon for instance, we might only be able to get 1, 3, and 4. 4 can be measured through the rank in which customers have placed the item.
+
+2. All are easily measured, the problem is access to those variables. For example 5, which looks like the hardest one can be easily measured on the number of clicks from the webpage where the product is. 
+
+### 8. Define causality. In a few sentences, why is causality interesting and important?
+
+There is causality between two variables when we are completely sure that one of them is the direct result/consequence of the other, and not of any other variable. It is interesting because causality tells us how the world works. It is important because having knowledge about how the world works, may help us manipulate reality. For the good or the bad.
+
+### 9. Which of the following describes a representation of a data generating process (DGP) including variables in that DGP and the causal relationships between them? 
+
+d. Causal Diagram
+
+The question refers to REPRESENTATION, which means how certain relationship in the real world can be reproduced in another language. In this case, the language of graphs. The rest of the options are not representations, but the real things in itself.
+
+
+
+# Chapter 7: Drawing Causal Diagrams
+## Exercises
+
+
+
+### 1.	You are making a simplified causal diagram to represent the data generating process of viewership for a TV show. Which of the following is true?
+
+a.	The diagram should include a variable for “number of celebrities in the cast”
+
+
+### 2. Draw a causal diagram for the research question “do long shift hours make doctors give lower-quality care?” that incorporates the following features (and only the following features):
+
+a.	Long shift hours affect both how tired doctors are, and how much experience they have, both of which affect the quality of care
+
+b.	How long shifts are is often decided by the hospital the doctor works at. There are plenty of other things about a given hospital that also affect the quality of care, like its funding level, how crowded it is, and so on
+
+c.	New policies that reduce shift times may be implemented at the same time (with the timing determined by some unobservable change in policy preferences) as other policies that also attempt to improve the quality of care
+
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch7_pic1.png")
+```
+
+
+### 3.	Consider this research question: Does the funding level of public schools affect student achievement for students in your country? 
+
+a.	What is the treatment and what is the outcome of interest? 
+
+Treatment = funding level of public schools in country x
+Outcome = Student achievement for students in country x
+
+b.	Write down a list of relevant variables. 
+
+* Parental income
+* Parental education 
+* Ethnicity
+* Gender
+* Individual talent
+* Students' motivations
+* Teachers' qualifications
+* Country's GDP
+* Country's concern with public education
+
+c.	Which of the variables in your list in part b are causes of both treatment and outcome? 
+
+* Country's GDP
+* Country's concern with public education
+
+
+d.	Why might we want to pay extra attention to the variables listed in part c?
+
+* They might be raised as alternative explanations of the association between treatment and outcome
+
+e.	Draw a causal diagram of the variables listed in part b.
+
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch7_pic2.png")
+```
+
+
+f.	Simplify the diagram from part e.
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch7_pic3.png")
+
+```
+
+
+### 4.	Describe the kinds of situations that each of the following could be applied to in order to simplify a causal diagram. 
+
+a.	Unimportance 
+
+This can be applied for effects that are likely to be very small and not central to a Data Generating Process. For instance, the effect of type of chairs in academic achievement
+
+b.	Redundancy 
+
+This can be applied for variables that have the same effect on the outcome and are also caused by the same variables. The book puts demographic variables (gender, race) as an example.Although it is not very clear what is the common variable that causes those, would that be genetics? I think somethimg more accurate would be thinks associated to parental ses (income, education, wealth) all of those have the same effect on the ouctome, and come from the same variable, "family of origin".
+
+c.	Mediators 
+This can be applied when a variable is just connecting two variables.So, if A -> B -> C, then B is a mediator and can be removed. For example, educational attainment is a mediator between socioeconomic origins and occupational attainment. 
+
+d.	Irrelevance
+
+This criteria can be applied for variables that are not related to the paths of treatment to outcome. 
+
+### 5. How can a causal diagram be modified so as to avoid cyclic relationships?
+
+We include a time dimension (t+1) in the diagram. This makes sense because we can't go back in time. Another way is looking for a random variation in the DGP. The variable that has random outcomes will have a different value each time, so that breaks the loop.
+
+
+### 6. Think of a research question in your field of interest. 
+
+a.	What is the cause variable and what is the outcome variable? 
+
+  1. Skin tone
+  2. Perceived discrimination
+
+b.	Write down a list of between 5 and 10 relevant variables in the data generating process. 
+  
+  * genetics
+  * age
+  * gender
+  * height
+  * attractiveness
+  * education
+  * income
+  * language  
+  * racial composition of place of residence
+  * race
+
+c.	Draw a causal diagram incorporating all the variables from part b.
+
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch7_pic4.png")
+
+```
+
+
+d.	Stop working on this problem for fifteen minutes and do something else. Then come back, look at your causal diagram from part c again, and describe one bad assumption you think it made, or something it left out.
+
+1. I forgot to include that skin tone causes ethnoracial identification and that causes perceived discrimination. But Skin tone also has an independent effect on perceived discrimination, so ethnoracial identification would be one of the mechanisms-
+
+
+### 7. Consider the diagram below. It depicts a cyclical relationship between student achievement and motivation. If students achieve more (i.e., score well on exams), then their motivation goes up, and if their motivation goes up, they achieve more. Change the diagram so that the relationship is not cyclic anymore.
+
+
+```{r}
+knitr::include_graphics("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/HW docs/ch7_pic5.png")
+
+```
