@@ -1,0 +1,273 @@
+---
+title: "Homework 4"
+author: "Braulio Güémez"
+date: "2/2/2022"
+output: html_document
+---
+
+# Chapter 8: Causal Paths
+## Exercises
+
+```{r}
+#setwd("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/soc723/4. hw_4")
+setwd("C:/Users/braul/OneDrive - Duke University/1. First Year/3. Stats/soc723/4. hw_4")
+
+```
+
+
+### 1.	Assuming that a path has no colliders on it, what is the difference between a path being Open and Closed?
+
+A path is open when the variation in one of the variables explains part of the variation in another one. This must be the case in every connected var on the path. 
+
+It is closed when at least one variable's  variation remains constant  (meaning there is no variation) and no longer has an effect on other variable. 
+
+### 2. Consider the below generic causal diagram.
+
+```{r}
+knitr::include_graphics("pic1.png")
+```
+
+
+a. List every path from X to Y
+
+  1. X <- B -> Y 
+  2. X -> A -> Y
+  3. X -> C <- D -> B -> Y
+  4. X -> C <- D -> Y
+  5. X <- B <- D -> Y 
+
+b.	Which of the paths are front-door paths?
+
+  2. X -> A -> Y 
+  
+c.	Which of the paths are open back-door paths?
+
+  1. X <- B -> Y
+  
+  5. X <- B <- D -> Y
+
+d.	What variables must be controlled for in order to identify the effect of X on Y? (only list what must be controlled for, not anything that additionally could be controlled for).
+
+  B, E & D
+
+### 3. Consider the research question: Does having higher income cause better health? 
+
+a.	Draw a causal diagram depicting the data generating process for this relationship with 5-10 variables on it. 
+
+```{r}
+knitr::include_graphics("pic2.png")
+```
+
+b.	Identify the Front Door paths.
+
+  a. income -> health
+  b. income -> hcare -> health
+    
+c.	Identify th.e Back Door paths. 
+
+  a. income <- race -> health
+  b. income <- occupation -> health
+  c. income <- age -> health
+  d. income <- race -> occupation -> health
+  e. income <- occupation <- race -> health  
+  
+d.	Identify the paths that represent direct effects. 
+ 
+ (These are direct effects from treatment to outcome)   
+  income -> health
+  
+
+
+e.	Identify the Good Paths and the Bad Paths. 
+
+  Good paths:
+  a. income -> health
+  b. income -> hcare -> health
+  
+  Bad Paths:
+  a. income <- race -> health
+  b. income <- occupation -> health
+  c. income <- age -> health
+  d. income <- race -> occupation -> health
+  e. income <- occupation <- race -> health 
+  
+
+### 4. Which of the following describes a causal path where all the arrows point away from the treatment?
+
+c.	Front Door Path 
+
+### 5.	Consider the figure below, which depicts the relationship between teaching quality, number of publications (e.g., articles, books), and popularity among scholars and students in a population of professors.
+
+```{r}
+knitr::include_graphics("pic3.png")
+```
+
+a.	What type of variable is Popularity in one path on this diagram? 
+
+Collider
+
+b.	Discuss what would happen if you controlled for Popularity.
+
+It would mislead us to think that publications and teaching quality are related. For instance, if we take the subset of very popular professors, we might observe that teaching quality and number of publications are highly correlated, when in the general set of professors that is not true.
+
+### 6.	Consider the figure below, which depicts the relationship between a pandemic-related lockdown and an economic recession. The research question of interest is: Does a pandemic-related lockdown cause recession? 
+
+```{r}
+knitr::include_graphics("pic4.png")
+```
+
+a.	Write down all the paths in the diagram from Lockdown to Recession. To make our lives simpler (there are a lot of paths in this diagram), ignore any path that goes through Stimulus.
+
+  a. lock -> unemp -> rec
+  b. lock -> rec
+  c. lock -> unemp <- priorec -> rec
+  d. lock <- priorec -> unemp -> rec
+  e. lock <- priorec ->  rec
+
+
+b.	List all of the paths that are Front Door Paths. 
+  
+  a. lock -> unemp -> rec
+  b. lock -> rec
+
+
+c.	What would happen if we controlled for unemployment? 
+
+  It will show an association between Lockdown and Stimulus that was not previously there. I wonder if doing so would alter the already existent relations between PriorEcon and Lockdown, and PriorEcon and Stimulus.
+  
+  
+d.	Is it possible to measure each of the variables adequately?
+
+I am not an economist but I think all of them can be measured:
+
+At the level of US states: 
+
+Lockdown: binary var where there was and was not 
+Unemployment: employment survey
+Recession: macro-economic indicators 
+PriorEcon: this one is hard, I believe maybe regional GDP?
+Stimulus: % workforce who received the stimulus
+
+
+e.	Can you think of any variables and paths not depicted in the diagram that may be relevant to identify the answer to the research question? List at least one and no more than three.
+
+  international trade may directly affect recession
+  
+  consumer behaviors are affected by stimulus and affect recession
+  
+
+
+### 7. Consider the question: Does obtaining a higher education improve income? Think of a couple of examples of Bad Paths in a causal diagram depicting the data generating process for this research question.
+
+Possible bad paths:
+  
+  a. higher_ed <- parental ses -> income
+  b. higher_ed <- race -> income
+  
+```{r}
+knitr::include_graphics("pic5.png")
+```
+
+
+
+
+
+# Chapter 9: Finding Front Doors
+## Exercises
+
+
+
+### 1.	Which of the following describes when randomization of treatment occurs without a researcher controlling the randomization? 
+
+b.	Natural experiment 
+
+### 2.	Necessary conditions:
+
+a.	What needs to be true about the variation we need to isolate when we’re trying to isolate front door paths?
+
+  That variation should have no back doors.
+
+
+b.	How do we know that the variation we get from a randomized controlled experiment fulfills the condition(s) from part a?
+
+  It is controlled and randomly assigned by the researcher. The treatment is unrelated to any other variables (back doors)
+  
+### 3.	Describe the four major differences between randomized experiments and natural experiments discussed in the chapter. As a bonus, there’s a fifth difference described in the chapter having to do with sample size and representativeness.
+
+  a. In RCTs the researcher randomly assigns the treatment to people, whereas in natural experiment this is not the case. Randomization just happened in nature. This might left some back doors open that we need to control for.
+  
+  b. In natural experiment people don't realize they're in an experiment and sample sizes tend to be bigger. 
+  
+  c. Natural experiments excludes the variation in treatment that did not occur thanks to the natural randomness. This variation might be important to fully understand the causal relationship.
+  
+  d. We are never completely sure that the exogenous source of variation on the treatment is free of back doors.
+  
+  e. Sample sizes are smaller in experiments but in RCT's they are representative of the population from the sampling frame. In a natural experiment the representativeness varies depending on the subpopulation subject to the randomization of treatment. For example,in the Charter school examples, the children that enter into the lottery not necessarily represent the broad student population. 
+
+
+### 4.	Provide an example of a research question that is causal in nature but cannot be feasibly answered by a randomized experiment. Explain your reasoning.
+
+  Did the assassination of Archduke Franz Ferdinand caused WW1?
+  
+  This cannot be answered by a randomized experiment because we can't replicate the conditions without treatment.
+  
+### 5.	Define the concept of exogenous variation.
+
+  There is a source of exogenous variation in treatment when there are no open back doors. This means that some of the treatment's variation is only caused by a random source.
+  
+  
+### 6. Provide an example of a natural experiment. It could be an idea of your own, from the book, or from a study you read.
+
+a.	Draw a causal diagram using 5-10 variables. 
+
+```{r}
+knitr::include_graphics("pic6.png")
+```
+Context: In Mexico, whether you attend or not the military service is decided with a lottery. This is restricted to men. Women can enroll but it is voluntary. 
+
+I did the thing :( 
+
+
+b.	List the paths from the source of exogenous variation to the outcome. 
+
+  a. lottery -> military_serv -> opinion_military
+  b. lottery -> military_serv <- vol_regis <- poli_views -> opinion
+  c. lottery -> military_serv <- vol_regis <- poli_views <- education -> opinion
+  d. lottery -> military_serv <- vol_regis <- poli_views <- education <- parental -> opinion
+  
+  
+c.	Which paths need to be closed?
+
+  a. lottery -> military_serv <- vol_regis <- poli_views -> opinion
+  b. lottery -> military_serv <- vol_regis <- poli_views <- education -> opinion
+  c. lottery -> military_serv <- vol_regis <- poli_views <- education <- parental -> opinion
+  
+These paths are alread closed because there is a collider (military_serv)! For the causal analysis to work, we would only have to isolate the variation caused from lottery.
+
+d.	Is it believable in this context that you haven’t missed any paths and that you can close all the paths you need? Why or why not?
+
+I missed one path in my previous chart. Military_serv can change poli_views, and then change opinion_military. Poliviews would be a mediator of the relationship.
+
+This study would only apply for people who participated on the lottery, of course. Which in the case of Mexico the % is unknown, because formally you need a certificate og the participation in the lottery for any kind of job. But in practice, that may not hold true.
+
+### 7.	Which of the following best explains how “using exogenous variation to predict treatment, and then using the prediction instead of the treatment itself” lets you isolate just the front door from treatment to outcome?
+
+
+b.	Because the exogenous variation has no back doors, so nothing it predicts can have back doors either
+
+### 8.	Consider the following natural experiment design: in 2019, United States president Donald Trump increased tariffs on Chinese imports considerably. This made United States consumers want to switch to non-Chinese sources of imports. If you are an exporter to the US, like Brazil, then demand for your products just went up if China is a competitor of yours. So Brazilian manufacturers of machinery saw their exports increase by a lot, but Brazilian pop musicians didn’t.
+
+You want to know whether exporting to a country makes you like it more. You plan to isolate the variation in Brazilian exports driven by the tariffs to see if industries with more exports have a higher opinion of the United States.
+
+a.	What potential back doors might remain between the tariffs and the opinion of the United States?
+
+  tariff -> export <- US_partnership -> higher_opinion
+  
+  (US partnership meaning the relationship of the CEO of industries with the country might explain why would they export on the first place and also the opinion they have about the US)
+  
+
+b.	If someone told you that they performed this study as described, and found that increased exports had no effect on opinion of the US, would you believe the result? Why or why not? 
+
+  I would not beleive it because not all backdoors are closed, so there are alternative explanations that must be discarded first. 
+
+  
