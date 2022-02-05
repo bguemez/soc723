@@ -60,16 +60,16 @@ knitr::include_graphics("pic2.png")
 
 b.	Identify the Front Door paths.
 
-  a. income -> health
-  b. income -> hcare -> health
+  1. income -> health
+  2. income -> hcare -> health
     
 c.	Identify th.e Back Door paths. 
 
-  a. income <- race -> health
-  b. income <- occupation -> health
-  c. income <- age -> health
-  d. income <- race -> occupation -> health
-  e. income <- occupation <- race -> health  
+  1. income <- race -> health
+  2. income <- occupation -> health
+  3. income <- age -> health
+  4. income <- race -> occupation -> health
+  5. income <- occupation <- race -> health  
   
 d.	Identify the paths that represent direct effects. 
  
@@ -81,15 +81,15 @@ d.	Identify the paths that represent direct effects.
 e.	Identify the Good Paths and the Bad Paths. 
 
   Good paths:
-  a. income -> health
-  b. income -> hcare -> health
+  1. income -> health
+  2. income -> hcare -> health
   
   Bad Paths:
-  a. income <- race -> health
-  b. income <- occupation -> health
-  c. income <- age -> health
-  d. income <- race -> occupation -> health
-  e. income <- occupation <- race -> health 
+  1. income <- race -> health
+  2. income <- occupation -> health
+  3. income <- age -> health
+  4. income <- race -> occupation -> health
+  5. income <- occupation <- race -> health 
   
 
 ### 4. Which of the following describes a causal path where all the arrows point away from the treatment?
@@ -118,22 +118,26 @@ knitr::include_graphics("pic4.png")
 
 a.	Write down all the paths in the diagram from Lockdown to Recession. To make our lives simpler (there are a lot of paths in this diagram), ignore any path that goes through Stimulus.
 
-  a. lock -> unemp -> rec
-  b. lock -> rec
-  c. lock -> unemp <- priorec -> rec
-  d. lock <- priorec -> unemp -> rec
-  e. lock <- priorec ->  rec
+
+  1. lock -> unemp -> rec
+  2. lock -> rec
+  3. lock -> unemp <- priorec -> rec
+  4. lock <- priorec -> unemp -> rec
+  5. lock <- priorec ->  rec
 
 
 b.	List all of the paths that are Front Door Paths. 
   
-  a. lock -> unemp -> rec
-  b. lock -> rec
+  1. lock -> unemp -> rec
+  2. lock -> rec
 
 
 c.	What would happen if we controlled for unemployment? 
 
-  It will show an association between Lockdown and Stimulus that was not previously there. I wonder if doing so would alter the already existent relations between PriorEcon and Lockdown, and PriorEcon and Stimulus.
+  two paths will close: (lock->unemp->rec) 
+  (lock<-priorec->unemp->rec)
+  
+  since unemp is a collider, it may alter the relationship between lockdown and prior, but I'm not sure (this is not very clear just by reading the chapter)
   
   
 d.	Is it possible to measure each of the variables adequately?
@@ -268,6 +272,6 @@ a.	What potential back doors might remain between the tariffs and the opinion of
 
 b.	If someone told you that they performed this study as described, and found that increased exports had no effect on opinion of the US, would you believe the result? Why or why not? 
 
-  I would not beleive it because not all backdoors are closed, so there are alternative explanations that must be discarded first. 
+  I would not believe it because not all backdoors are closed, so there are alternative explanations that must be discarded first. 
 
   
