@@ -265,10 +265,17 @@ You want to know whether exporting to a country makes you like it more. You plan
 
 a.	What potential back doors might remain between the tariffs and the opinion of the United States?
 
-  tariff -> export <- US_partnership -> higher_opinion
-  
+
+
+  1. tariff -> export <- US_partnership -> higher_opinion
   (US partnership meaning the relationship of the CEO of industries with the country might explain why would they export on the first place and also the opinion they have about the US)
   
+  2. tariff -> export <- type -> higher_opinion
+  
+It is not clear for me if the comparison is within or between industries, but assuming the latter the effect of export on higher opinion can be explained by the effect of the type of company on both variables. The music industry might have a high opinion of the US and don't make any kind of export. The comparison with other industries that did export may improve their opinion, but that may be obscured by the comparison with other countries that did not
+export and already had a good opinion of the couuntry.
+
+
 
 b.	If someone told you that they performed this study as described, and found that increased exports had no effect on opinion of the US, would you believe the result? Why or why not? 
 
