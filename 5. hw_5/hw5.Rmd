@@ -1,0 +1,236 @@
+---
+title: "Homework 5"
+author: "Braulio Güémez"
+date: "2/2/2022"
+output: html_document
+---
+
+# Chapter 10 & 11
+
+## Exercises. Ch.10: Treatment Effects
+
+
+```{r}
+#setwd("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/soc723/4. hw_4")
+setwd("C:/Users/braul/OneDrive - Duke University/1. First Year/3. Stats/soc723/4. hw_4")
+
+```
+
+### 1.	Define in your own words (i.e., don’t just copy down what’s written in the glossary) each of the following terms: 
+
+a.	Conditional average treatment effect 
+
+  This is the average difference between the outcomes of the treatment group and the control group, both of which share a characteristic (e.g., they are males). Thus, this effects don't apply for the total population. 
+
+b.	Average treatment on the treated
+
+This is the average effect of the treatment ONLY on those who actually got treated. It answers the counterfactual: what will be the effect of the treated be if they hadn't been treated. 
+
+
+c.	Average treatment on the untreated  
+
+This is the effect you would expect the treatment would have on the population that did not get the treatment (the untreated). In other words, it answers the counterfactual: what will be the effect of the untreated if they got treated. 
+
+The difference between the ATT and the ATU is that the counterfactual is made on the group who got treated and those who didn't, respectively. These two groups are different, so it is a sort of within-group comparison.
+
+In contrast, ATE estimates de effect _across_ groups.
+
+
+### 2. Provide an example of a treatment effect that you would expect to be highly heterogeneous, and explain why you think it is likely to be heterogeneous
+
+A treatment of a monthly UBI would be heteregenous because people have different attitudes towards spending and saving, which is heavily dependent on their income and wealth.
+
+### 3.	Consider the data in the table below that shows the hypothetical treatment effect of cognitive behavioral therapy on depression for six participants. For the sake of this example, the six participants represent the population of interest. 
+
+
+```{r}
+library(dplyr)
+library(janitor)
+
+cognitive <- tibble(case=c(1:6), age=c(15,40,30,20,15,25), gender=c(1,2,2,3,1,2),
+                    effect=c(7,3,7,8,7,4))  
+
+cognitive 
+
+```
+
+
+a.	What is the overall average treatment effect for the population? 
+
+```{r}
+mean(cognitive$effect)
+```
+
+
+
+b.	What is the average treatment effect for Women? 
+
+```{r}
+cognitive %>% filter(gender==2) %>% summarize(atew=mean(effect))
+```
+
+
+c.	If nearly all Non-binary people get treated, and about half of all Women get treated, and we control for the differences between Women and Non-binary people, what kind of treatment effect average will we get, and what can we say about the numerical estimate we’ll get? 
+
+This would be a variance-weighted average treatment effects, because we want to close the back door that made almost all non/binary people not receive the treatment. Since men are not included, maybe we could call it a variance-weighted average conditional on being women OR non-binary.
+
+The variance in women treatment is higher, so the final estimate will closely reflect their effect.
+
+
+d.	If we assume that, in the absence of treatment, everyone would have had the same outcome, and also only teenagers (19 or younger) ever receive treatment, and we compare treated people to control people, what kind of treatment effect average will we get, and what can we say about the numerical estimate we’ll get?
+
+If everyone except teenagers would have the same outcome in the absence of treatment, that would mean that  y0 would be equal to y1, so the effect will be zero:
+
+```{r}
+
+cognitive2 <- cognitive |> mutate(situation=if_else(gender==1,effect,0))
+cognitive2
+```
+
+
+The ATE would be the difference between the effect of the treated versus the non-treated: 
+```{r}
+7 - 0
+```
+I guess it would be an ATE because it involves the whole population. However, since the treatment assignment was not random (it included only teenagers and males) , there estimates would be biased, and it would only reflect the effect of teenagers which is 7 in this case. 
+
+
+
+### 4.	Give an example where the average treatment effect on the treated would be more useful to consider than the overall average treatment effect, and explain why.
+
+Measuring the effect of a disease in some psychological factors is more properly analyzed with ATT than ATE because it is not possible/ethical to randomly assign the disease to individuals in the population.  
+
+
+### 5. Which of the following describes the average treatment effect of assigning treatment, whether or not treatment is actually received? 
+
+c.	Intent-to-treat 
+
+### 6.	On weighted treatment effects: 
+
+a.	Describe what a variance-weighted treatment effect is
+the amount of variance 
+
+
+It is an estimate of treatment affects that factor in how much variance in treatments there is. Observations with more variance in their treatment effects are given more weight than those with less variance. This is a way to close the back door that made some type of people receive the treatment more(or less) than other type of people, and which reflect the differences in variation.
+
+b.	Describe what a distribution-weighted treatment effect is 
+
+This is an estimate that is calculated in a sample where some group variables are similar on the treated and the untreated groups. In this type of samples, individuals with really common values of the variables used for the matching are weighted more heavily.
+
+
+
+c.	Under what conditions/research designs would we get each of these?
+
+When we can't randomly assign the treatment to a sample of people. Thus, mainly with observational data.
+
+
+### 7.	Suppose you are conducting an experiment to see whether pricing cookies at $1.99 versus $2 affects the decision to purchase the cookies. The population of interest is all adults in the United States. You recruit people from your university to participate and randomize them to either see cookies priced as $1.99 or $2, then write down whether they purchased cookies. What kind of average treatment effect can you identify from this experiment?
+
+This experiment will give us the average effects of buying cookies when it is 1.99 vs 2 , _conditional_ on being a college student. So it couldn't be generalized to the total adult population of the United States.
+
+Even if we tried distribution-weighted treatment effects, we would fail because there's simply not enough variation among the college student population to match it with untreated people outside. We wouldn't be able to infer to our population of interest.
+
+
+
+### 8.	For each of the following identification strategies, what kind of treatment effect(s) is most likely to be identified? 
+
+
+a.	A randomized experiment using a representative sample 
+
+Average Treatment Effect 
+
+b.	True randomization within only a certain demographic group
+
+Conditional Average Treatment Effect 
+
+c.	Closing back door paths connected to variation in treatment
+
+Variance-Weighted Average Treatment Effect
+
+d.	Isolating the part of the variation in treatment variable that is driven by an exogenous variable 
+
+Intent-to-Treat estimate
+
+
+e.	The control group is comparable to the treatment group, but treatment effects may be different across these groups
+
+Heterogeneous treatment effects. Different groups in the TREATMENT group react differently to the treatment.
+
+
+## Exercises. Ch.11: Causality with Less Modeling
+
+### 1.	Suppose that you are analyzing the effect of universities and colleges opening during a pandemic on increase in the number of positive cases. Name one strategy that you can use to avoid having to collect data on all types of campus characteristic variables that are constant over time that you may have to control for in your analysis.
+
+Maybe a diff-in-diff approach can help. We can choose two similar universities, see how they did in terms of cases during the shut down and estimate their differences. Then, see the difference in cases between the one that decided to maintained closed and the one that decided to open. Finally, compare the differences pre and post treatment may yield the causal effect.
+
+There is a strrong assumption though, that both universities are almost identical.
+
+
+### 2.	Intuitively, why would a method that isolates front doors allow you to ignore back doors related to unmeasured variables?
+
+Because, you are completely sure that the relation between treatment and outcome is not explained by an external variable.
+
+
+### 3.	On robustness tests: 
+
+a.	What are robustness tests? 
+
+These are tests that can tell us if our assumptions are false or unreliable.
+
+b.	What is the purpose of conducting a robustness test? 
+
+We want to know if the assumption we are relying on is valid. A general way to do this is to re run the analysis to see if the result changes if we _don't_ rely on the assumption.
+
+c.	What are placebo tests?
+
+It is a type of robustness test where you pretend/imagine/suppose that the treatment is where it is not supposed to be. If we observe an "effect" there must be something wrong because placebos should not have an effect on the outcome.  
+
+### 4.	Suppose you want to study the effect of attending tutoring sessions on grade point averages (GPA). List at least five variables that impact both attendance of tutoring sessions and students’ GPA. Is it feasible to measure and control for all of the variables?
+
+- interest in learning
+- pressures to success 
+- behavior in class
+- exams' difficulty
+- parental SES
+
+I think it is doable if you do a survey of every student at the school before they decide to go to tutoring sessions and then another survey after that. That way you are aware of the selection process and can control for confounding variables.
+
+But I know the point of this Q is to say: it is not feasible, there are too many variables, and the easiest thing to do is an RCT where we randomly assign people in tutoring sessions and then evaluate their GPA. I believe that is true, and it is a more cost-effective way of knowing the effect of tutoring sessions. 
+
+### 5.	Describe partial identification in your own words.
+
+We do a partial identification when we are sure we are not controlling for a confounder but we have a plausible assumption about the direction of the confounder, which can help in interpreting more credible effect intervals.
+
+
+### 6.	Pick any causal diagram from the book other than Figure 11.2.
+
+a.	Reproduce that diagram here.
+
+
+```{r}
+knitr::include_graphics("C:/Users/braul/OneDrive - Duke University/1. First Year/3. Stats/soc723/5. hw_5/pic1.png") 
+```
+
+
+b.	Select two variables on the diagram without a direct link between them (i.e. no single arrow straight from one of them to the other).
+
+- Weather and Economic Activity
+
+c.	What variables would you need to control for that will eliminate any relationship between the two variables (you might not need any).
+
+- Economic Activity doesn't have any backdoors, so we don't need to control for anything.
+
+d.	If you looked at the relationship between your two variables from part b, while controlling for the variables from part c, and you got a nonzero result, what would you conclude?
+
+The assumption that weather and economic activity are NOT related is false.
+
+
+
+
+### 7.	What does it mean to say that the effect of financial deregulation on the rate at which firms go bankrupt is “bounded from above” at 2 percentage points?
+
+
+
+d.	The effect is no larger than 2 percentage points
+
+
