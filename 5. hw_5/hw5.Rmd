@@ -43,10 +43,13 @@ A treatment of a monthly UBI would be heteregenous because people have different
 ### 3.	Consider the data in the table below that shows the hypothetical treatment effect of cognitive behavioral therapy on depression for six participants. For the sake of this example, the six participants represent the population of interest. 
 
 
-```{r}
+```{r, results='hide', message=FALSE}
 library(dplyr)
 library(janitor)
 
+```
+
+```{r}
 cognitive <- tibble(case=c(1:6), age=c(15,40,30,20,15,25), gender=c(1,2,2,3,1,2),
                     effect=c(7,3,7,8,7,4))  
 
@@ -154,7 +157,9 @@ Intent-to-Treat estimate
 
 e.	The control group is comparable to the treatment group, but treatment effects may be different across these groups
 
-Heterogeneous treatment effects. Different groups in the TREATMENT group react differently to the treatment.
+This one is tricky. One option could be heterogeneous treatment effects. Different groups react differently to the treatment in contrast to the control groups. 
+
+Another one could be ATT because the sentence uses the word "comparable", so I assume they are looking for the counterfactual of the treated. 
 
 
 ## Exercises. Ch.11: Causality with Less Modeling
