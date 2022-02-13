@@ -200,21 +200,8 @@ setwd(&quot;C:/Users/braul/OneDrive - Duke University/1. First Year/3. Stats/soc
 </div>
 <div id="consider-the-data-in-the-table-below-that-shows-the-hypothetical-treatment-effect-of-cognitive-behavioral-therapy-on-depression-for-six-participants.-for-the-sake-of-this-example-the-six-participants-represent-the-population-of-interest." class="section level3">
 <h3>3. Consider the data in the table below that shows the hypothetical treatment effect of cognitive behavioral therapy on depression for six participants. For the sake of this example, the six participants represent the population of interest.</h3>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(janitor)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code>library(dplyr)
+library(janitor)</code></pre>
 <pre class="r"><code>cognitive &lt;- tibble(case=c(1:6), age=c(15,40,30,20,15,25), gender=c(1,2,2,3,1,2),
                     effect=c(7,3,7,8,7,4))  
 

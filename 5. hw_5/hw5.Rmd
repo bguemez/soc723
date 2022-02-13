@@ -10,7 +10,7 @@ output: html_document
 ## Exercises. Ch.10: Treatment Effects
 
 
-```{r}
+```{r, results='hide'}
 #setwd("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/soc723/4. hw_4")
 setwd("C:/Users/braul/OneDrive - Duke University/1. First Year/3. Stats/soc723/4. hw_4")
 
