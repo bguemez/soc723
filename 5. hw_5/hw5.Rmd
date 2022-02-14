@@ -152,7 +152,7 @@ Variance-Weighted Average Treatment Effect
 
 d.	Isolating the part of the variation in treatment variable that is driven by an exogenous variable 
 
-Intent-to-Treat estimate
+If we assume that we are isolating the variation to predict treatment, and then use it instead of treatment to predict outcome, then we would have a local  weighted average treatment effect
 
 
 e.	The control group is comparable to the treatment group, but treatment effects may be different across these groups
