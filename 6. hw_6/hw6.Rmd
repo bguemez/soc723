@@ -1,0 +1,321 @@
+---
+title: "Homework 6"
+author: "Braulio Güémez"
+date: "2/2/2022"
+output: html_document
+---
+
+# Chapter 13
+
+### 1. You've generated some random data X, Y, and ε where you randomly generated X and ε as normally distributed data, and then created Y using the formula Y=2+3X+ε. You look at some of the random data you generated, and see an observation with X=2 and Y=9. Let's call that Observation A.
+
+    a. What is the error for Observation A?
+
+9 = 2 + 3(2) + E
+9 - 8 = E
+1 = E
+
+    b.You estimate the regression Y=β_0+β_1 X+ε using the data you generated and get the estimates β ̂_0=1.9,β ̂_1=3.1. What is the residual for Observation A?
+
+Yhat = 1.9 + 3.1*2 + E
+Yhat = 8.1 
+Res = Y - Yhat = 9 - 8.1 = .9 
+
+### 2. Write the regression equation that you would use to estimate the effect of X on Y, if you think the correct causal diagram is the one below. Assume you can measure all the variables in the diagram.
+
+```{r}
+#setwd("C:/Users/bguemez/OneDrive - Duke University/1. First Year/3. Stats/soc723/4. hw_4")
+setwd("C:/Users/braul/OneDrive - Duke University/1. First Year/3. Stats/soc723/6. hw_6")
+knitr::include_graphics("pic1.png")
+```
+
+
+
+y = β0 + β1x + β2a + β3b
+
+
+### 3. You use regression to estimate the equation Y=β_0+β_1 X+ε and get an estimate of β ̂\_1=3 and the standard error s.e.(β ̂\_1 )=1.3.
+
+    a. Interpret, in a sentence, the coefficient β ̂_1.
+
+A one-unit increase in X is linearly associated with a 3-unit change in Y. 
+
+    b. Calculate whether β ̂_1 is statistically significantly different from 0 at the 95% level. (more technical detail you may not need: do a two-sided test, and assume the sample size is effectively infinite)
+    
+```{r}
+  ## T-test= beta/s.e. 
+3/1.3
+
+```
+The t-statistic yielded 2.3 which is > than 1.96. This means that the coefficient is different to zero and statistically significant at the 95% level.
+
+
+    c. Whatever your answer to part b, what does it mean to say that this coefficient is statistically significantly different from 0?
+
+It means that b = 3 has a 5% chance or less of occurring given that the null value is true. Thus, it is unlikely that our estimate is zero.
+
+### 4.	Consider the below conventional OLS regression table, which uses data from 1987 on how many hours women work in paid jobs.  In the table, hours worked is predicted using the number of children under the age of 5 in the household and the number of years of education the woman has.
+
+    a.	How many additional hours worked is associated with a one-unit increase of years of education when controlling for number of children?
+
+76.185
+
+    b.	What is the standard error on the “children under 5” coefficient when not controlling for years of education?
+
+19.693
+
+    c.	In the third model, what is the predicted number of hours worked for a woman with zero children and zero years of education?
+    
+306.553
+    
+    
+    d.	How many observations are used in each of the three regressions?
+    
+3382
+    
+    e.	Is the coefficient on “children under 5” statistically significantly different from 0 at the 95% level?
+
+t-stat= -238.853/19.693 = -12.12
+
+Since -12.12 < -1.96 we can say that the coefficient is statistically significantly different from 0 at the 95% level. 
+
+Also, the *** prove it.
+
+
+### 5.	Using the same data as in question 4, we can estimate the model: AnnualHoursWorked=10.145+110.230YearsEducation-1.581YearsEducation^2
+
+
+    a. What is the relationship between a one-year increase in YearsEducation and AnnualHoursWorked? (hint: your answer will not just be a single number, it will still include a YearsEducation term)
+    
+A one-unit change in YearsEducation is associated with a (110.230 + 2*-1.581*YearsEducation)-unit change in AnnualHoursWorked. 
+	
+	
+    b. What is the relationship between a one-year increase in YearsEducation and AnnualHoursWorked if the current level of YearsEducation is 16?
+
+A one-unit change in YearsEducation is associated with a (110.230 + 2*-1.581*16=59.638)-unit change in AnnualHoursWorked. 
+
+    c. Is the relationship between YearsEducation and AnnualHoursWorked getting more or less positive for higher values of YearsEducation?
+
+Less positive. The positive association of education with workhours diminishes with high levels of education.
+
+    d. What would be one reason not to include a whole bunch of additional powers of YearsEducation in this model (YearsEducation^3,YearsEducation^4,YearsEducation^5, and so on)
+
+It may overfit the model, making it look like the sample, and not the DGP on the population. 
+
+
+### 6.	The following table uses the same data from question 4, but this time all of the predictors are binary. The first model predicts working hours using whether the family owns their home, and the second uses the number of children under 5 again, but this time treating it as a categorical variable.
+
+    a.	Interpret the coefficient on “Homeowner”
+    
+Owning a home is associated to an average difference of 50.174 annual hours worked in contrast with not owning one.
+    
+    b.	On average, how many fewer hours do people with 4 children under the age of 5 work than people with 3 children under the age of 5?
+    
+  4 children vs 0 children = -923.904
+  3 children vs 0 children = -773.412
+    
+  -923 - - 773 = - 150
+  
+  (minus) 150 hours 
+    
+    c.	From this table alone can we tell whether there’s a statistically significant difference in hours worked between having 2 children and having 3? What additional test would we need to perform?
+    
+  We can't. We need a test that evaluates whether the fit of the model is the same or not with and without the variable with all the the category coefficients. The book refers to a "Joint F test" 
+
+
+### 7. Consider the below regression table, still using the same data as in 4-6.
+
+    a.	In Model 1, what is the relationship between a one-unit increase in Education and annual hours worked?
+    
+A one-unit increase in Education is linearly associated to a 110.073 increase in annual hours worked when homeownership is zero.
+
+
+    b.	Do annual earnings rise more quickly for homeowning families or non-homeowning families? Is the difference between the two statistically significant at the 95% level?
+
+(I think there is a typo. It talks about earnings, but the dep variable is Annual Hours Worked)
+    
+Homeowners have on average more Annual Hours worked than non-homeowners. 
+
+t-test = 682.992/172.921= 3.949
+
+the average differences in annual hours worked are statistically significant at the 95% level.
+
+    c.	Interpret the coefficient on Homeowner x Education in Model 1.
+    
+For every unit-increase in education, the linear association of owning a house on annual hours worked get less positive by -53.994
+
+OR
+
+For homeowners,  every unit-increase in education is associated to a 110.073-53.994= 56.079 unit increase in annual hours worked
+
+    
+    d.	Interpret the coefficient on Education in Model 2. Note that the dependent variable is log annual hours worked.
+
+When homeownership equals zero, a unit increase on years of education is associated to a exp(.067) = 6.9% increase in Annual Hours Worked
+    
+    e.	Interpret the coefficient on log(Education) in Model 3, beginning with “a 10% increase in Education…”
+    
+A 10% increase in education is associated with a .1*832.347= 83.23 unit change in Annual Hours Worked
+    
+    
+    f.	Why do you think the sample sizes are different in each of the three models? The only thing that really changed was the addition of the logarithms…
+
+Because some people work zero hours. Those observations were dropped.
+
+
+
+### 8.	Which of the following is the most accurate definition of autocorrelation in an error term?
+
+b.	When error terms are correlated across time, such that knowing the error term in one period gives us some information about the error term in the next period
+
+### 9.	You have run an OLS regression of Y on X, and you would like to figure out whether it would be a good idea to use heteroskedasticity-robust standard errors. Which of the following would help you figure this out? Select all that apply.
+
+
+	b. Creating a plot with Y on the y-axis and X on the x-axis, and a line reflecting the predicted values of the regression, and seeing if the spread of the Y values around the predicted values change over the range of X
+	
+	d. Checking if the R^2 value of the regression is particularly low
+	
+
+### 10.	Political pollsters gather data by contacting people (by phone, knocking on their door, internet ads, etc.) and asking them questions. A common problem in political polling is that different kinds of people are more or less likely to respond to a poll. People in certain demographics that have historically been mistreated by pollsters, for example, might be especially unlikely to respond, and so the resulting data will not represent those groups well. If a pollster has information on the proportion of each demographic in a population, and also the proportion of each demographic in their data, what tool from Chapter 13 can they use to help address this problem, and how would they apply it? 
+
+Sample weights. Each observation has a different weight in the analysis according to the demographic characteristics of interest. We want to weight each individual by the inverse of the probability of being sampled. By using the inverse probability, we weight more heavily the people that were less likely to be sampled.
+    
+    
+### 11.	Which of the following is an example of measurement error where we can tell that the measurement error is non-classical?
+
+a.	You’re doing research on unusual sexual practices. You ask people whether they’ve ever engaged in these weird practices, which many people might prefer to keep secret, even if they’ve actually done them.
+
+Here the measurement error is related to the true value.
+
+
+## Coding homework
+
+```{r, message=FALSE}
+library(tidyverse)
+library(modelsummary)
+library(dplyr)
+```
+
+
+```{r}
+dengue <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/dengue.csv")
+
+m2 <- lm(NoYes ~ humid, data=dengue )
+
+msummary(m2, stars=TRUE)
+
+```
+
+### 3. Write two sentences, one interpreting the intercept and one interpreting the slope.
+
+The predicted value of whether dengue was observed or not is close to 0 (-0.416) when the humidity is zero.
+
+Every unit-increase in humidity is linearly associated to a .05 unit increase in reporting whether dengue was observed or not
+
+
+### 4. Get a set of summary statistics for the humidity variable and write a comment on how this can help you make sense of the intercept in the regression from step 2.
+
+
+```{r}
+summary(dengue$humid)
+```
+
+Humidity can never really be a rounded zero in the dataset, so the interpretation of the intercept is not very useful.
+
+
+### 5. We might recognize that, if we're interested in the effect of humidity on Dengue, temperature might be on a back door. Add a control for temperature, rerun the regression, and show the results.
+
+```{r}
+m5 <- lm(NoYes ~ humid + temp, data=dengue )
+
+msummary(m5, stars=TRUE)
+```
+
+
+
+### 6. Our dependent variable is binary, and we're getting predictions below zero, which we might not want. Rerun the regression from question 5 but as a logit model, and report the marginal effects of both slope coefficients.
+
+```{r, message=FALSE}
+library(margins)
+```
+
+```{r}
+m6 <- glm(NoYes ~ humid + temp, data=dengue,
+       family = binomial(link = 'logit'))
+
+msummary(m6, stars = TRUE)
+
+
+m6 %>%
+    margins(variables = 'humid') %>%
+    summary()
+
+
+m6 %>%
+    margins(variables = 'temp') %>%
+    summary()
+
+```
+The average marginal effect of humidity on the probability of spotting dengue is .0317
+
+
+The average marginal effect of temperature on the probability of spotting dengue is .0042
+
+
+7. A long one: Now let's say we're directly interested in the relationship between temperature and humidity. Run an OLS regression of humidity on temperature. Calculate the residuals of that regression, and then make a plot that will let you evaluate whether there is likely heteroskedasticity in the model. Rerun the model with heteroskedasticity-robust standard errors. Show both models, and say whether you think there is heteroskedasticity
+
+
+```{r}
+denguem7 <- dengue |> filter(!is.na(dengue$humid))
+
+m7 <- glm(humid ~ temp, data = denguem7)
+
+plot(denguem7$temp,resid(m7)) 
+
+```
+
+
+
+
+Heterosckedasticity is wild. The variance of the error term is obviously related to the temperature variable. The error distribution is not identical across the values of temperature.
+
+```{r}
+library(fixest)
+
+m71 <-  feols(humid ~ temp , data = denguem7, se = 'hetero')
+
+msummary(m7)
+
+msummary(m71)
+
+
+```
+
+Standard errors changed a little bit.
+
+
+
+8. In the graph in the last problem you may have noticed that for certain ranges of temperate, the errors were clearly nonzero on average. This can indicate a functional form problem. Run the model from question 7 again (with heteroskedasticity-robust standard errors), but this time use the logarithm of humidity in place of humidity. Add a sentence interpreting the coefficient on temperature. 
+
+```{r}
+m8 <-  feols(log(humid) ~ temp , data = denguem7, se = 'hetero')
+msummary(m8)
+```
+
+Every unit-increase in temperature is linearly associated to a 5.6% increase in humidity.
+
+
+9. Bonus challenge: figure out how I decided on a form where you log humidity and keep temperature linear.
+
+```{r}
+library(ggplot2)
+
+dengue |> ggplot(aes(temp,humid)) + geom_point() + geom_smooth(method="lm")
+
+dengue |> ggplot(aes(temp,log(humid))) + geom_point() + geom_smooth(method="lm")
+
+
+```
+
+
+Logging humidity makes the relationship between temperature and log(humid) more appropriate to the linear shape. The model is better fit to the data. 
