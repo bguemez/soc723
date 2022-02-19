@@ -29,6 +29,28 @@ setwd("C:/Users/braul/OneDrive - Duke University/1. First Year/3. Stats/soc723/6
 knitr::include_graphics("pic1.png")
 ```
 
+```{r}
+library(dplyr)
+library(broom)
+
+obs <- 1e4
+
+d <- tibble(
+  
+  c = rnorm(obs,0,1),
+  b = rnorm(obs,0,1),
+  a = rnorm(obs,.5*b,1),
+  x = rnorm(obs, .5*a + 5*b + .5*c, 1), 
+  y = x  + a + b 
+  
+)
+
+lm(y ~ x + a , data = d) |> tidy()
+
+lm(y ~ x + a + b , data = d) |> tidy()
+
+
+```
 
 
 y = β0 + β1x + β2a + β3b
