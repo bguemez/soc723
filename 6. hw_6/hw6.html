@@ -215,18 +215,17 @@ lm(y ~ x + a , data = d) |&gt; tidy()</code></pre>
 <pre><code>## # A tibble: 3 x 5
 ##   term        estimate std.error statistic p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 (Intercept)  0.00183  0.00215      0.849   0.396
-## 2 x            1.19     0.000466  2548.      0    
-## 3 a            0.933    0.00224    417.      0</code></pre>
+## 1 (Intercept) 0.000408  0.00216      0.189   0.850
+## 2 x           1.19      0.000475  2501.      0    
+## 3 a           0.929     0.00227    409.      0</code></pre>
 <pre class="r"><code>lm(y ~ x + a + b , data = d) |&gt; tidy()</code></pre>
-<pre><code>## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable</code></pre>
 <pre><code>## # A tibble: 4 x 5
-##   term        estimate std.error statistic  p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept) 5.60e-16  4.23e-17   1.32e 1 1.38e-39
-## 2 x           1.00e+ 0  3.80e-17   2.63e16 0       
-## 3 a           1.00e+ 0  4.60e-17   2.17e16 0       
-## 4 b           1.00e+ 0  1.97e-16   5.08e15 0</code></pre>
+##   term        estimate std.error statistic p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept) 4.26e-16  3.15e-16   1.35e 0   0.176
+## 2 x           1.00e+ 0  2.84e-16   3.53e15   0    
+## 3 a           1   e+ 0  3.47e-16   2.88e15   0    
+## 4 b           1.00e+ 0  1.46e-15   6.85e14   0</code></pre>
 <p>y = β0 + β1x + β2a + β3b</p>
 </div>
 <div id="you-use-regression-to-estimate-the-equation-yβ_0β_1-xε-and-get-an-estimate-of-β-_13-and-the-standard-error-s.e.β-_1-1.3." class="section level3">
@@ -296,7 +295,7 @@ lm(y ~ x + a , data = d) |&gt; tidy()</code></pre>
 <pre><code>e.  Interpret the coefficient on log(Education) in Model 3, beginning with “a 10% increase in Education…”</code></pre>
 <p>A 10% increase in education is associated with a .1*832.347= 83.23 unit change in Annual Hours Worked</p>
 <pre><code>f.  Why do you think the sample sizes are different in each of the three models? The only thing that really changed was the addition of the logarithms…</code></pre>
-<p>Because some people work zero hours. Those observations were dropped.</p>
+<p>Because some people work zero hours and the log of zero is undefined. Those observations were dropped.</p>
 </div>
 <div id="which-of-the-following-is-the-most-accurate-definition-of-autocorrelation-in-an-error-term" class="section level3">
 <h3>8. Which of the following is the most accurate definition of autocorrelation in an error term?</h3>

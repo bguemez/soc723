@@ -182,7 +182,7 @@ A 10% increase in education is associated with a .1*832.347= 83.23 unit change i
     
     f.	Why do you think the sample sizes are different in each of the three models? The only thing that really changed was the addition of the logarithms…
 
-Because some people work zero hours. Those observations were dropped.
+Because some people work zero hours and the log of zero is undefined. Those observations were dropped.
 
 
 
