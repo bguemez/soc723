@@ -102,19 +102,19 @@ av_treat - 5
 
 #### a. For what group of treated businesses would we say that the common-support assumption definitely fails?
 
-***Retail businesses with 11-20 employees** There is simply no way to compare an untreated group similar to this because there is no information.*
+***Retail businesses with 1-5 employees** There is simply no way to compare an untreated group similar to this because there is zero information about retail businesses with 1-5 employees that were not treated.*
 
 #### b. There are no treated retail businesses with 11-20 employees. Is this a concern for the common support assumption if we are trying to estimate an average treatment on the treated?
 
-***Yes** We can't do the counterfactual because we couldn't estimate Y(treated).*
+***No.** We could just simply exclude the observations of businesses with 11-20 employees on the retail service because we didn't find any possible matches for them. As the book says: "*Observations without common support won't make it to the matched sample. Done!"
 
 #### c. What concern might we have about there only being one untreated Service business with 11-20 employees?
 
-*That observation will be the **only** match for the 5 service businesses on the treated group, increasing sampling variance a lot*
+*That observation will be the **only** match for the 5 service businesses on the treated group, increasing sampling variance a lot and it is close to violate the common support assumption.*
 
 #### d. If we resolved the common support problem for the group from problem (a) by dropping members of that group from the data, what problem would that create for our analysis?
 
-Our analysis will be restricted to only those groups that were able to find a match.
+Our analysis will be restricted to only those groups that were able to find a match, which in this case would only be the group of 6 to 10 employees. That is not a very representative sample of small businesses.
 
 ### 8. You perform a matching analysis on a schooling reform to create a set of matching weights, matching on the per-capita income and expenditures of the school. You then produce the below weighted balance table comparing the weighted means for treatment and control.
 
