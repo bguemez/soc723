@@ -56,6 +56,7 @@ c <- tibble(vacation=c(rep(1:5,2)), hap=c(1:5,2,4,6,8,10), per=c(rep(1,5),
 c |> ggplot(aes(vacation,hap,col=per, group=per)) + geom_point() + geom_smooth(method="lm") + theme_clean()
 
 m1 <-  feols(hap ~ vacation | per, data = c)
+
 tidy(m1)
 
 c <- c |> mutate(predict=c(1:5*1.5+rep(-1.5,5), 1:5*1.5+rep(1.5,5)))  ## this looks like a mess. I am just using the values of the eq to estimate the predictions
