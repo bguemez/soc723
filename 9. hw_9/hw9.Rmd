@@ -27,36 +27,35 @@ library(fixest) ##for two-way fixed effects
 
 _We make the assumption that the treatment was the ONLY thing that changed during the time period of study. In other words, we assume that the pattern in time would have remained the same had the treatment did not occur._
 
-_In DID we don't have to assume that because we have a similar group to compare, where we can observe the effect of time also on the control group_
+_In DID we don't have to assume that because we have a similar group to compare (the control group). If the parallel trend assumption holds, then we can confidently say that during the period of treatment there was not anything else that changed during time, except for thet treatment._
 
 
 
 ### 2.	Which of the following potential back doors is controlled for by comparing the treated group to a control group?
 
-_c.	There may be differences in typical outcome levels between the treated group and the untreated group_
+_b.	There may be events affecting everyone that would change the outcome from before-treatment to after-treatment anyway_
 
 ### 3. Consider a treatment and control group. Looking only at the pre-treatment period, they have exactly the same outcomes (zero gap between them in each period).
 
 
-####a.	Despite having exactly the same outcomes pre-treatment, it happens to be the case that parallel trends is violated for these two groups. How is this possible? Explain what it means for parallel trends to be violated in this case, or give an example of how it could be violated.
+#### a.	Despite having exactly the same outcomes pre-treatment, it happens to be the case that parallel trends is violated for these two groups. How is this possible? Explain what it means for parallel trends to be violated in this case, or give an example of how it could be violated.
 
 _It might be that the untreated group suddenly changed at the moment of the treatment, which would violate the assumption. For example, suppose we are seeing patterns of meat consumption in two cities, and we want to estimate the effect of a news article alerting for a salmonella outbreak in chicken meat in one of the cities. The two cities had the same meat consumption levels, but at the time of the news outbreak, there was a chicken shortage on the untreated group, which brought the meat consumption levels down. The two groups are not comparable anymore and the parallel trend assumption is violated: had the treatment not occurred, the cities would have NOT continued having similar trends_
 
 
-####b.	If we estimate the causal effect in this case using difference-in-differences, even though parallel trends is violated, how much would our effect be off by? (note you won’t be able to give a specific number)
+#### b.	If we estimate the causal effect in this case using difference-in-differences, even though parallel trends is violated, how much would our effect be off by? (note you won’t be able to give a specific number)
 
 _In my example of meat consumption, the effect of the news article could even also lead to think that it increased meat consumption, because it would be compared to very low levels of it on the untreated group._   
 
 
 ### 4. Consider the below graph showing the average outcome for treated and control groups in the leadup to treatment (indicated by the dashed line), and also after treatment.
 
-
 #### a.	Based on the prior trend, does it seem likely that parallel trends holds in this instance?
 
 _No, the gap between the two reduces in size by the time of the treatment. There is too much variation for the parallel assumption to hold._ 
 
 
-####b.	If we estimate difference-in-differences anyway, are we likely to overestimate the actual causal effect, underestimate it, or get it right on average?
+#### b.	If we estimate difference-in-differences anyway, are we likely to overestimate the actual causal effect, underestimate it, or get it right on average?
 
 _I think we will underestimate the effect. The reason is that the treatment seems to have had a positive effect, but, because the untreated group was having an upward tendency, we would mistakenly think that was en effect of "time" and reduce the positive effect on the treatment group_
 
@@ -140,7 +139,7 @@ _There is a pre-treatment period effect in time 1. This violates the parallel tr
 
 ####b.	Ignoring any concerns we have, what would we say is the effect of treatment on Y in this case? (note the height of the line in period 5 is about 3, in period 6 is about 1, and in period 7 is about .5).
 
-_It would be equal to the average of the effects from the three periods, so (5+1+.6)/3 = 2.2
+_It would be equal to the average of the effects from the three periods, so (5+1+.6)/3 = 2.2_
 
 ### 5.	Chapter 18.2.5 points out a problem with two-way fixed effects in cases where treatment is not all assigned at the same time, but rather different groups get treated at different times (a “rollout” design). In these designs, two-way fixed effects treats “already-treated” units, who were treated in earlier periods, as “control” units, as though they hadn’t gotten treated at all.
 

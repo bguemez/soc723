@@ -397,24 +397,27 @@ changed during the time period of study. In other words, we assume that
 the pattern in time would have remained the same had the treatment did
 not occur.</em></p>
 <p><em>In DID we don’t have to assume that because we have a similar
-group to compare, where we can observe the effect of time also on the
-control group</em></p>
+group to compare (the control group). If the parallel trend assumption
+holds, then we can confidently say that during the period of treatment
+there was not anything else that changed during time, except for thet
+treatment.</em></p>
 </div>
 <div id="which-of-the-following-potential-back-doors-is-controlled-for-by-comparing-the-treated-group-to-a-control-group" class="section level3">
 <h3>2. Which of the following potential back doors is controlled for by
 comparing the treated group to a control group?</h3>
-<p><em>c. There may be differences in typical outcome levels between the
-treated group and the untreated group</em></p>
+<p><em>b. There may be events affecting everyone that would change the
+outcome from before-treatment to after-treatment anyway</em></p>
 </div>
 <div id="consider-a-treatment-and-control-group.-looking-only-at-the-pre-treatment-period-they-have-exactly-the-same-outcomes-zero-gap-between-them-in-each-period." class="section level3">
 <h3>3. Consider a treatment and control group. Looking only at the
 pre-treatment period, they have exactly the same outcomes (zero gap
 between them in each period).</h3>
-<p>####a. Despite having exactly the same outcomes pre-treatment, it
+<div id="a.-despite-having-exactly-the-same-outcomes-pre-treatment-it-happens-to-be-the-case-that-parallel-trends-is-violated-for-these-two-groups.-how-is-this-possible-explain-what-it-means-for-parallel-trends-to-be-violated-in-this-case-or-give-an-example-of-how-it-could-be-violated." class="section level4">
+<h4>a. Despite having exactly the same outcomes pre-treatment, it
 happens to be the case that parallel trends is violated for these two
 groups. How is this possible? Explain what it means for parallel trends
 to be violated in this case, or give an example of how it could be
-violated.</p>
+violated.</h4>
 <p><em>It might be that the untreated group suddenly changed at the
 moment of the treatment, which would violate the assumption. For
 example, suppose we are seeing patterns of meat consumption in two
@@ -426,14 +429,17 @@ brought the meat consumption levels down. The two groups are not
 comparable anymore and the parallel trend assumption is violated: had
 the treatment not occurred, the cities would have NOT continued having
 similar trends</em></p>
-<p>####b. If we estimate the causal effect in this case using
+</div>
+<div id="b.-if-we-estimate-the-causal-effect-in-this-case-using-difference-in-differences-even-though-parallel-trends-is-violated-how-much-would-our-effect-be-off-by-note-you-wont-be-able-to-give-a-specific-number" class="section level4">
+<h4>b. If we estimate the causal effect in this case using
 difference-in-differences, even though parallel trends is violated, how
 much would our effect be off by? (note you won’t be able to give a
-specific number)</p>
+specific number)</h4>
 <p><em>In my example of meat consumption, the effect of the news article
 could even also lead to think that it increased meat consumption,
 because it would be compared to very low levels of it on the untreated
 group.</em></p>
+</div>
 </div>
 <div id="consider-the-below-graph-showing-the-average-outcome-for-treated-and-control-groups-in-the-leadup-to-treatment-indicated-by-the-dashed-line-and-also-after-treatment." class="section level3">
 <h3>4. Consider the below graph showing the average outcome for treated
@@ -445,9 +451,11 @@ trends holds in this instance?</h4>
 <p><em>No, the gap between the two reduces in size by the time of the
 treatment. There is too much variation for the parallel assumption to
 hold.</em></p>
-<p>####b. If we estimate difference-in-differences anyway, are we likely
-to overestimate the actual causal effect, underestimate it, or get it
-right on average?</p>
+</div>
+<div id="b.-if-we-estimate-difference-in-differences-anyway-are-we-likely-to-overestimate-the-actual-causal-effect-underestimate-it-or-get-it-right-on-average" class="section level4">
+<h4>b. If we estimate difference-in-differences anyway, are we likely to
+overestimate the actual causal effect, underestimate it, or get it right
+on average?</h4>
 <p><em>I think we will underestimate the effect. The reason is that the
 treatment seems to have had a positive effect, but, because the
 untreated group was having an upward tendency, we would mistakenly think
@@ -482,12 +490,12 @@ difference-in-difference effect of treatment. Write out the equation you
 used to calculate it (i.e. show how the four numbers in the table are
 combined to get the estimate)</h3>
 <pre class="r"><code>tibble(treat=c(1,0),before=c(5,6),after=c(9,7.5)) |&gt; gt()</code></pre>
-<div id="srypxtrdau" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xroxudwfzg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#srypxtrdau .gt_table {
+#xroxudwfzg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -512,7 +520,7 @@ combined to get the estimate)</h3>
   border-left-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_heading {
+#xroxudwfzg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -524,7 +532,7 @@ combined to get the estimate)</h3>
   border-right-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_title {
+#xroxudwfzg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -536,7 +544,7 @@ combined to get the estimate)</h3>
   border-bottom-width: 0;
 }
 
-#srypxtrdau .gt_subtitle {
+#xroxudwfzg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -548,13 +556,13 @@ combined to get the estimate)</h3>
   border-top-width: 0;
 }
 
-#srypxtrdau .gt_bottom_border {
+#xroxudwfzg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_col_headings {
+#xroxudwfzg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -569,7 +577,7 @@ combined to get the estimate)</h3>
   border-right-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_col_heading {
+#xroxudwfzg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -589,7 +597,7 @@ combined to get the estimate)</h3>
   overflow-x: hidden;
 }
 
-#srypxtrdau .gt_column_spanner_outer {
+#xroxudwfzg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -601,15 +609,15 @@ combined to get the estimate)</h3>
   padding-right: 4px;
 }
 
-#srypxtrdau .gt_column_spanner_outer:first-child {
+#xroxudwfzg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#srypxtrdau .gt_column_spanner_outer:last-child {
+#xroxudwfzg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#srypxtrdau .gt_column_spanner {
+#xroxudwfzg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -621,7 +629,7 @@ combined to get the estimate)</h3>
   width: 100%;
 }
 
-#srypxtrdau .gt_group_heading {
+#xroxudwfzg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -646,7 +654,7 @@ combined to get the estimate)</h3>
   vertical-align: middle;
 }
 
-#srypxtrdau .gt_empty_group_heading {
+#xroxudwfzg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -661,15 +669,15 @@ combined to get the estimate)</h3>
   vertical-align: middle;
 }
 
-#srypxtrdau .gt_from_md > :first-child {
+#xroxudwfzg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#srypxtrdau .gt_from_md > :last-child {
+#xroxudwfzg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#srypxtrdau .gt_row {
+#xroxudwfzg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -688,7 +696,7 @@ combined to get the estimate)</h3>
   overflow-x: hidden;
 }
 
-#srypxtrdau .gt_stub {
+#xroxudwfzg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -701,7 +709,7 @@ combined to get the estimate)</h3>
   padding-right: 5px;
 }
 
-#srypxtrdau .gt_stub_row_group {
+#xroxudwfzg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -715,11 +723,11 @@ combined to get the estimate)</h3>
   vertical-align: top;
 }
 
-#srypxtrdau .gt_row_group_first td {
+#xroxudwfzg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#srypxtrdau .gt_summary_row {
+#xroxudwfzg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -729,16 +737,16 @@ combined to get the estimate)</h3>
   padding-right: 5px;
 }
 
-#srypxtrdau .gt_first_summary_row {
+#xroxudwfzg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_first_summary_row.thick {
+#xroxudwfzg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#srypxtrdau .gt_last_summary_row {
+#xroxudwfzg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -748,7 +756,7 @@ combined to get the estimate)</h3>
   border-bottom-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_grand_summary_row {
+#xroxudwfzg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -758,7 +766,7 @@ combined to get the estimate)</h3>
   padding-right: 5px;
 }
 
-#srypxtrdau .gt_first_grand_summary_row {
+#xroxudwfzg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -768,11 +776,11 @@ combined to get the estimate)</h3>
   border-top-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_striped {
+#xroxudwfzg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#srypxtrdau .gt_table_body {
+#xroxudwfzg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -781,7 +789,7 @@ combined to get the estimate)</h3>
   border-bottom-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_footnotes {
+#xroxudwfzg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -795,7 +803,7 @@ combined to get the estimate)</h3>
   border-right-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_footnote {
+#xroxudwfzg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -804,7 +812,7 @@ combined to get the estimate)</h3>
   padding-right: 5px;
 }
 
-#srypxtrdau .gt_sourcenotes {
+#xroxudwfzg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -818,7 +826,7 @@ combined to get the estimate)</h3>
   border-right-color: #D3D3D3;
 }
 
-#srypxtrdau .gt_sourcenote {
+#xroxudwfzg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -826,60 +834,60 @@ combined to get the estimate)</h3>
   padding-right: 5px;
 }
 
-#srypxtrdau .gt_left {
+#xroxudwfzg .gt_left {
   text-align: left;
 }
 
-#srypxtrdau .gt_center {
+#xroxudwfzg .gt_center {
   text-align: center;
 }
 
-#srypxtrdau .gt_right {
+#xroxudwfzg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#srypxtrdau .gt_font_normal {
+#xroxudwfzg .gt_font_normal {
   font-weight: normal;
 }
 
-#srypxtrdau .gt_font_bold {
+#xroxudwfzg .gt_font_bold {
   font-weight: bold;
 }
 
-#srypxtrdau .gt_font_italic {
+#xroxudwfzg .gt_font_italic {
   font-style: italic;
 }
 
-#srypxtrdau .gt_super {
+#xroxudwfzg .gt_super {
   font-size: 65%;
 }
 
-#srypxtrdau .gt_footnote_marks {
+#xroxudwfzg .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#srypxtrdau .gt_asterisk {
+#xroxudwfzg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#srypxtrdau .gt_slash_mark {
+#xroxudwfzg .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#srypxtrdau .gt_fraction_numerator {
+#xroxudwfzg .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#srypxtrdau .gt_fraction_denominator {
+#xroxudwfzg .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -988,8 +996,8 @@ test</em></p>
 <p>####b. Ignoring any concerns we have, what would we say is the effect
 of treatment on Y in this case? (note the height of the line in period 5
 is about 3, in period 6 is about 1, and in period 7 is about .5).</p>
-<p>_It would be equal to the average of the effects from the three
-periods, so (5+1+.6)/3 = 2.2</p>
+<p><em>It would be equal to the average of the effects from the three
+periods, so (5+1+.6)/3 = 2.2</em></p>
 </div>
 <div id="chapter-18.2.5-points-out-a-problem-with-two-way-fixed-effects-in-cases-where-treatment-is-not-all-assigned-at-the-same-time-but-rather-different-groups-get-treated-at-different-times-a-rollout-design.-in-these-designs-two-way-fixed-effects-treats-already-treated-units-who-were-treated-in-earlier-periods-as-control-units-as-though-they-hadnt-gotten-treated-at-all." class="section level3">
 <h3>5. Chapter 18.2.5 points out a problem with two-way fixed effects in
